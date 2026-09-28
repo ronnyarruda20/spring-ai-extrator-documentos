@@ -1,0 +1,13 @@
+# Modelo real desligado; os testes usam um modelo falso.
+spring:
+  ai:
+    model:
+      chat: none
+    google:
+      genai:
+        api-key: chave-de-teste
+    anthropic:
+      api-key: chave-de-teste
+
+app:
+  mcp-brasil-url: ""

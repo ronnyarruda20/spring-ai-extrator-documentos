@@ -1,0 +1,15 @@
+# Backend
+backend/target/
+backend/cp.txt
+# Frontend (o build vai para dentro do backend)
+frontend/node_modules/
+frontend/.angular/
+frontend/dist/
+backend/src/main/resources/static/
+# Geral
+*.log
+.idea/
+*.iml
+.vscode/
+.DS_Store
+.env

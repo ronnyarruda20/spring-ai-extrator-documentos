@@ -1,0 +1,19 @@
+# Sobe o extrator e o servidor MCP Brasil (consulta de CNPJ na Receita):
+#   export GEMINI_API_KEY=sua-chave
+#   docker compose up --build
+services:
+  # Servidor MCP de dados públicos brasileiros, do repositório spring-ai-mcp-brasil.
+  mcp-brasil:
+    build: https://github.com/ronnyarruda20/spring-ai-mcp-brasil.git#main
+
+  app:
+    build: .
+    depends_on:
+      - mcp-brasil
+    environment:
+      MCP_BRASIL_URL: http://mcp-brasil:8080
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      CHAT_PROVIDER: ${CHAT_PROVIDER:-google-genai}
+    ports:
+      - "8080:8080"

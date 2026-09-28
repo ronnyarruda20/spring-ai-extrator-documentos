@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: spring-ai-extrator-documentos
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 11MB
+  ai:
+    model:
+      # google-genai (padrão) ou anthropic
+      chat: ${CHAT_PROVIDER:google-genai}
+      embedding:
+        text: none
+    google:
+      genai:
+        api-key: ${GEMINI_API_KEY:}
+        chat:
+          options:
+            model: ${GEMINI_CHAT_MODEL:gemini-3.8-flash}
+    anthropic:
+      api-key: ${ANTHROPIC_API_KEY:}
+      chat:
+        options:
+          # Claude Opus 5 não aceita temperature (400), por isso ela não é definida aqui.
+          model: ${ANTHROPIC_CHAT_MODEL:claude-opus-5}
+          max-tokens: 16000
+
+app:
+  # Servidor spring-ai-mcp-brasil, usado para conferir CNPJs na Receita. Vazio desliga.
+  mcp-brasil-url: ${MCP_BRASIL_URL:http://localhost:8090}
+
+server:
+  port: ${PORT:8080}
